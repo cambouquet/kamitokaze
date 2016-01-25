@@ -22,6 +22,8 @@ public class Editor {
 		frame.setResizable(true);
 		frame.setMinimumSize(new Dimension(150, 50));
 		
+		frame.add(new MapPanel(200, 400));
+		
 		frame.pack();
 	}
 	
