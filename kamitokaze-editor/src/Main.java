@@ -1,3 +1,5 @@
+import com.kamitokaze.editor.ui.Editor;
+
 /**
  * 
  */
@@ -12,8 +14,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Editor editor = new Editor();
+		
+		editor.display(true);
 	}
 
 }
