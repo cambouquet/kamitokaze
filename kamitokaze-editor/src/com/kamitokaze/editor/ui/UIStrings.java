@@ -12,6 +12,8 @@ public interface UIStrings {
 	public String DIALOG_NEWMAP_MAXLEVEL = "Maximum level";
 	public String DIALOG_NEWMAP_PLAYERLEVEL = "Player level";
 	
+	public String DIALOG_NEWMAP_INVALIDDATA_TITLE = "Invalid data";
+	public String DIALOG_NEWMAP_INVALIDDATA_CONTENT = "Values must be positive integers";
 	public String DIALOG_NEWMAP_OKBUTTON = "Create";
 	public String DIALOG_NEWMAP_CANCELBUTTON= "Cancel";
 }

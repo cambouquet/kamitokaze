@@ -7,15 +7,21 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.NumberFormatter;
+
+import org.apache.commons.lang3.math.NumberUtils;
 
 import com.kamitokaze.editor.model.MapProperties;
 
@@ -52,6 +58,7 @@ public class NewMapDialog extends JDialog implements UIStrings {
 	private JPanel createMainPanel() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
+
 		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_WIDTH, 0);
 		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_HEIGHT, 1);
 		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_MAXLEVEL, 2);
@@ -69,7 +76,6 @@ public class NewMapDialog extends JDialog implements UIStrings {
 		panel.add(textField, new GridBagConstraints(1, line, 1, 1, 0.0,
 				0.0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH,
 				new Insets(5, 20, 5, 10), 0, 0));
-		
 	}
 
 	private JPanel createButtonPanel() {
@@ -79,9 +85,13 @@ public class NewMapDialog extends JDialog implements UIStrings {
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				validated = true;
-				fillMapProperties();
-				setVisible(false);
+				if (validateData()) {
+					validated = true;
+					fillMapProperties();
+					setVisible(false);
+				} else {
+					JOptionPane.showMessageDialog(null, DIALOG_NEWMAP_INVALIDDATA_CONTENT, DIALOG_NEWMAP_INVALIDDATA_TITLE, JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		
@@ -102,7 +112,23 @@ public class NewMapDialog extends JDialog implements UIStrings {
 		return buttonPanel;
 	}
 	
+	private boolean validateData() {
+		boolean isValid = true;
+		
+		for (JTextField textField: textFields) {
+			String text = textField.getText();
+			
+			if (text.isEmpty() || !NumberUtils.isNumber(text) || Integer.valueOf(text) < 1) {
+				isValid = false;
+				break;
+			}
+		}
+		
+		return isValid;
+	}
+	
 	private void fillMapProperties() {
+		
 		mapProperties.setWidth(Integer.valueOf(textFields.get(0).getText()));
 		mapProperties.setHeight(Integer.valueOf(textFields.get(1).getText()));
 		mapProperties.setLevelMax(Integer.valueOf(textFields.get(2).getText()));
