@@ -6,6 +6,8 @@ public class MapProperties {
 	private int height;
 
 	private int levelMax;
+	
+	private int playerLevel;
 
 	public int getWidth() {
 		return width;
@@ -29,5 +31,13 @@ public class MapProperties {
 
 	public void setLevelMax(int levelMax) {
 		this.levelMax = levelMax;
+	}
+	
+	public int getPlayerLevel() {
+		return playerLevel;
+	}
+
+	public void setPlayerLevel(int playerLevel) {
+		this.playerLevel = playerLevel;
 	}
 }

@@ -7,7 +7,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+
+import com.kamitokaze.editor.model.MapProperties;
 
 public class MenuBuilder implements UIStrings {
 	public JMenuBar createMenu() {
@@ -55,12 +58,14 @@ public class MenuBuilder implements UIStrings {
 		public void actionPerformed(ActionEvent arg0)
 		{
 			NewMapDialog dialogNew =
-				new NewMapDialog();
+				new NewMapDialog(null);
 
 			boolean validated = dialogNew.showDialog();
 
 			if (validated)
 			{
+				MapProperties prop = dialogNew.getResult();
+				JOptionPane.showMessageDialog(null, CODGINPHASE_COMINGSOON + "\nNew map: " + prop.getWidth() + " x " + prop.getHeight() + " with " + prop.getLevelMax() + " levels. Players at level " + prop.getPlayerLevel() + ".");
 			}
 		}
 	}

@@ -7,11 +7,13 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -20,12 +22,14 @@ import com.kamitokaze.editor.model.MapProperties;
 public class NewMapDialog extends JDialog implements UIStrings {
 	private boolean validated = false;
 	
-	private MapProperties mapProperties;
+	private MapProperties mapProperties = new MapProperties();
+	private List<JTextField> textFields = new LinkedList<>();
 	
 	private JButton okButton;
 	private JButton cancelButton;
 	
-	public NewMapDialog() {
+	public NewMapDialog(JFrame parent) {
+		super(parent, DIALOG_NEWMAP_TITLE, true);
 		JPanel mainPanel = createMainPanel();
 		this.add(mainPanel, BorderLayout.CENTER);
 		
@@ -35,6 +39,16 @@ public class NewMapDialog extends JDialog implements UIStrings {
 		this.pack();
 	}
 	
+	public boolean showDialog() {
+		this.setVisible(true);
+		
+		return validated;
+	}
+	
+	public MapProperties getResult() {
+		return mapProperties;
+	}
+
 	private JPanel createMainPanel() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
@@ -50,16 +64,12 @@ public class NewMapDialog extends JDialog implements UIStrings {
 		panel.add(new JLabel(label), new GridBagConstraints(0, line, 1, 1, 0.0,
 				0.0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH,
 				new Insets(5, 20, 5, 10), 0, 0));
-		panel.add(new JTextField(8), new GridBagConstraints(1, line, 1, 1, 0.0,
+		JTextField textField = new JTextField(8);
+		textFields.add(textField);
+		panel.add(textField, new GridBagConstraints(1, line, 1, 1, 0.0,
 				0.0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH,
 				new Insets(5, 20, 5, 10), 0, 0));
 		
-	}
-
-	public boolean showDialog() {
-		this.setVisible(true);
-		
-		return validated;
 	}
 
 	private JPanel createButtonPanel() {
@@ -70,8 +80,8 @@ public class NewMapDialog extends JDialog implements UIStrings {
 			public void actionPerformed(ActionEvent arg0)
 			{
 				validated = true;
+				fillMapProperties();
 				setVisible(false);
-				JOptionPane.showMessageDialog(null, CODGINPHASE_COMINGSOON);
 			}
 		});
 		
@@ -90,5 +100,12 @@ public class NewMapDialog extends JDialog implements UIStrings {
 		buttonPanel.add(okButton);
 		
 		return buttonPanel;
+	}
+	
+	private void fillMapProperties() {
+		mapProperties.setWidth(Integer.valueOf(textFields.get(0).getText()));
+		mapProperties.setHeight(Integer.valueOf(textFields.get(1).getText()));
+		mapProperties.setLevelMax(Integer.valueOf(textFields.get(2).getText()));
+		mapProperties.setPlayerLevel(Integer.valueOf(textFields.get(3).getText()));
 	}
 }
