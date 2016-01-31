@@ -7,6 +7,11 @@ public interface UIStrings {
 	public String MENU_QUIT = "Quit";
 	
 	public String DIALOG_NEWMAP_TITLE = "Create new map";
+	public String DIALOG_NEWMAP_WIDTH = "Width (px)";
+	public String DIALOG_NEWMAP_HEIGHT = "Height (px)";
+	public String DIALOG_NEWMAP_MAXLEVEL = "Maximum level";
+	public String DIALOG_NEWMAP_PLAYERLEVEL = "Player level";
+	
 	public String DIALOG_NEWMAP_OKBUTTON = "Create";
 	public String DIALOG_NEWMAP_CANCELBUTTON= "Cancel";
 }
