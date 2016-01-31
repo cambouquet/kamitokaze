@@ -10,10 +10,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import com.kamitokaze.editor.controller.MapController;
 import com.kamitokaze.editor.model.MapProperties;
 
 public class MenuBuilder implements UIStrings {
-	public JMenuBar createMenu() {
+	public JMenuBar createMenu(MapController mapController) {
 		JMenuBar menuBar = new JMenuBar();
 		
 		
@@ -29,7 +30,7 @@ public class MenuBuilder implements UIStrings {
 			}
 		}, Integer.valueOf('Q'), KeyEvent.VK_Q);
 		
-		JMenuItem menuItemNew = createMenuItem(MENU_NEW, new NewMapListener(), Integer.valueOf('N'), KeyEvent.VK_N);
+		JMenuItem menuItemNew = createMenuItem(MENU_NEW, new NewMapListener(mapController), Integer.valueOf('N'), KeyEvent.VK_N);
 		
 		menuFile.add(menuItemNew);
 		menuFile.add(menuItemQuit);
@@ -54,6 +55,12 @@ public class MenuBuilder implements UIStrings {
 	
 	public class NewMapListener implements ActionListener
 	{
+		MapController mapController;
+		
+		public NewMapListener(MapController mapController) {
+			this.mapController = mapController;
+		}
+		
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
@@ -66,6 +73,7 @@ public class MenuBuilder implements UIStrings {
 			{
 				MapProperties prop = dialogNew.getResult();
 				JOptionPane.showMessageDialog(null, CODGINPHASE_COMINGSOON + "\nNew map: " + prop.getWidth() + " x " + prop.getHeight() + " with " + prop.getLevelMax() + " levels. Players at level " + prop.getPlayerLevel() + ".");
+				mapController.createMap(prop);
 			}
 		}
 	}

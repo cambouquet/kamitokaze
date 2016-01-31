@@ -6,15 +6,19 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.kamitokaze.editor.controller.MapController;
+
 public class Editor implements UIStrings {
 	JFrame frame;
 	JPanel container;
+	MapPanel mapPanel;
 	
 	public Editor() {
 		frame = new JFrame();
 		initFrame();
+		MapController mapController = new MapController(mapPanel);
 		
-		frame.setJMenuBar(new MenuBuilder().createMenu());
+		frame.setJMenuBar(new MenuBuilder().createMenu(mapController));
 		
 		frame.pack();
 	}
@@ -33,7 +37,7 @@ public class Editor implements UIStrings {
 		frame.setContentPane(container);
 		frame.setResizable(true);
 		frame.setMinimumSize(new Dimension(150, 50));
-		
-		frame.add(new MapPanel(200, 400));
+		mapPanel = new MapPanel(200, 400);
+		frame.add(mapPanel);
 	}
 }
