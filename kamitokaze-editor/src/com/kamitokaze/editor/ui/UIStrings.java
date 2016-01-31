@@ -7,4 +7,6 @@ public interface UIStrings {
 	public String MENU_QUIT = "Quit";
 	
 	public String DIALOG_NEWMAP_TITLE = "Create new map";
+	public String DIALOG_NEWMAP_OKBUTTON = "Create";
+	public String DIALOG_NEWMAP_CANCELBUTTON= "Cancel";
 }

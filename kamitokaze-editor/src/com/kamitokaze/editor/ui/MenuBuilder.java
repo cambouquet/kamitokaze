@@ -7,11 +7,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 public class MenuBuilder implements UIStrings {
-	public static JMenuBar createMenu() {
+	public JMenuBar createMenu() {
 		JMenuBar menuBar = new JMenuBar();
 		
 		
@@ -27,15 +26,7 @@ public class MenuBuilder implements UIStrings {
 			}
 		}, Integer.valueOf('Q'), KeyEvent.VK_Q);
 		
-		JMenuItem menuItemNew = createMenuItem(MENU_NEW, new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				JOptionPane.showMessageDialog(
-						null,CODGINPHASE_COMINGSOON,
-						DIALOG_NEWMAP_TITLE, JOptionPane.INFORMATION_MESSAGE);
-			}
-		}, Integer.valueOf('N'), KeyEvent.VK_N);
+		JMenuItem menuItemNew = createMenuItem(MENU_NEW, new NewMapListener(), Integer.valueOf('N'), KeyEvent.VK_N);
 		
 		menuFile.add(menuItemNew);
 		menuFile.add(menuItemQuit);
@@ -43,7 +34,7 @@ public class MenuBuilder implements UIStrings {
 		return menuBar;
 	}
 	
-	private static JMenuItem createMenuItem(String title, ActionListener action, Integer mnemonic, Integer accelerator) {
+	private JMenuItem createMenuItem(String title, ActionListener action, Integer mnemonic, Integer accelerator) {
 		JMenuItem menuItem = new JMenuItem(title);
 		menuItem.addActionListener(action);
 		
@@ -56,5 +47,21 @@ public class MenuBuilder implements UIStrings {
 		}
 		
 		return menuItem;
+	}
+	
+	public class NewMapListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0)
+		{
+			NewMapDialog dialogNew =
+				new NewMapDialog();
+
+			boolean validated = dialogNew.showDialog();
+
+			if (validated)
+			{
+			}
+		}
 	}
 }
