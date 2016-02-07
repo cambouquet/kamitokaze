@@ -59,10 +59,8 @@ public class NewMapDialog extends JDialog implements UIStrings {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
 
-		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_WIDTH, 0);
-		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_HEIGHT, 1);
-		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_MAXLEVEL, 2);
-		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_PLAYERLEVEL, 3);
+		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_MAXLEVEL, 0);
+		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_PLAYERLEVEL, 1);
 		
 		return mainPanel;
 	}
@@ -128,10 +126,7 @@ public class NewMapDialog extends JDialog implements UIStrings {
 	}
 	
 	private void fillMapProperties() {
-		
-		mapProperties.setWidth(Integer.valueOf(textFields.get(0).getText()));
-		mapProperties.setHeight(Integer.valueOf(textFields.get(1).getText()));
-		mapProperties.setLevelMax(Integer.valueOf(textFields.get(2).getText()));
-		mapProperties.setPlayerLevel(Integer.valueOf(textFields.get(3).getText()));
+		mapProperties.setLevelMax(Integer.valueOf(textFields.get(0).getText()));
+		mapProperties.setPlayerLevel(Integer.valueOf(textFields.get(1).getText()));
 	}
 }

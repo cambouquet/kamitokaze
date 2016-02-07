@@ -6,7 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.kamitokaze.editor.controller.MapController;
+import com.kamitokaze.editor.controller.map.MapController;
 
 public class Editor implements UIStrings {
 	JFrame frame;

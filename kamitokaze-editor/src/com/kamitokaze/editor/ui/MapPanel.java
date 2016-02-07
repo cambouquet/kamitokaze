@@ -9,32 +9,21 @@ import javax.swing.JPanel;
 import com.kamitokaze.editor.model.GameMap;
 
 public class MapPanel extends JPanel {
-	private int width;
-	private int height;
+	private static final long serialVersionUID = 1L;
+	private static int DEFAULT_WIDTH = 1000;
+	private static int DEFAULT_HEIGHT = 800;
 	
 	private GameMap map;
 	
 	public MapPanel(int width, int height) {
-		this.width = width;
-		this.height = height;
-		this.setPreferredSize(new Dimension(width, height));
+		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 	
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		// Dessine un rectangle noir englobant tout
 		g.setColor(Color.BLACK);
-
-		/*
-		 * g.fillRect(0, 0, largeur * largeurCase, hauteur * hauteurCase);
-		 */
-
-		g.fillRect(0, 0, this.width, this.height);
-		if (this.map != null) {
-			g.setColor(Color.GRAY);
-			g.fillRect(0, 0, this.map.getWidth(), this.map.getHeight());
-		}
+		g.fillRect(0, 0, this.DEFAULT_WIDTH, this.DEFAULT_HEIGHT);
 	}
 	
 	public void updateMap(GameMap newMap) {
