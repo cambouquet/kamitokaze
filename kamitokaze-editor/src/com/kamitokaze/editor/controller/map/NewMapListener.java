@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import com.kamitokaze.editor.model.MapProperties;
-import com.kamitokaze.editor.ui.NewMapDialog;
 import com.kamitokaze.editor.ui.UIStrings;
+import com.kamitokaze.editor.ui.menu.NewMapDialog;
 
 public class NewMapListener implements ActionListener {
 		MapController mapController;

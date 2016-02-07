@@ -16,4 +16,5 @@ public interface UIStrings {
 	public String DIALOG_NEWMAP_INVALIDDATA_CONTENT = "Values must be positive integers";
 	public String DIALOG_NEWMAP_OKBUTTON = "Create";
 	public String DIALOG_NEWMAP_CANCELBUTTON= "Cancel";
+	public String NEWOBJECTPANEL_TITLE = "New object";
 }

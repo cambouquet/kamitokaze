@@ -11,11 +11,13 @@ import com.kamitokaze.editor.model.GameMap;
 public class MapPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static int DEFAULT_WIDTH = 1000;
-	private static int DEFAULT_HEIGHT = 800;
+	private static int DEFAULT_HEIGHT = 600;
 	
 	private GameMap map;
 	
-	public MapPanel(int width, int height) {
+	public MapPanel() {
+		this.setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 	}
 	
