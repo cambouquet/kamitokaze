@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import com.kamitokaze.editor.controller.map.MapController;
 import com.kamitokaze.editor.model.GameMap;
 
 public class MapPanel extends JPanel {
@@ -14,8 +15,10 @@ public class MapPanel extends JPanel {
 	private static int DEFAULT_HEIGHT = 600;
 	
 	private GameMap map;
+	private MapController controller;
 	
-	public MapPanel() {
+	public MapPanel(MapController mapController) {
+		this.controller = mapController;
 		this.setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));

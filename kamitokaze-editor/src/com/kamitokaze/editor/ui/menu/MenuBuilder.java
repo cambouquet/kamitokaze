@@ -14,7 +14,7 @@ import com.kamitokaze.editor.controller.map.NewMapListener;
 import com.kamitokaze.editor.ui.UIStrings;
 
 public class MenuBuilder implements UIStrings {
-	public JMenuBar createMenu(MapController mapController) {
+	public JMenuBar createMenu(NewMapListener newMapListener) {
 		JMenuBar menuBar = new JMenuBar();
 		
 		JMenu menuFile = new JMenu(MENU_FILE);
@@ -29,7 +29,7 @@ public class MenuBuilder implements UIStrings {
 			}
 		}, Integer.valueOf('Q'), KeyEvent.VK_Q);
 		
-		JMenuItem menuItemNew = createMenuItem(MENU_NEW, new NewMapListener(mapController), Integer.valueOf('N'), KeyEvent.VK_N);
+		JMenuItem menuItemNew = createMenuItem(MENU_NEW, newMapListener, Integer.valueOf('N'), KeyEvent.VK_N);
 		
 		menuFile.add(menuItemNew);
 		menuFile.add(menuItemQuit);

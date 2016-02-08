@@ -20,7 +20,8 @@ public class NewObjectPanel extends JPanel {
 	
 	private NewObjectPanelController controller;
 	
-	public NewObjectPanel() {
+	public NewObjectPanel(NewObjectPanelController newObjectPanelController) {
+		this.controller = newObjectPanelController;
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		this.setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		TitledBorder title;
