@@ -21,7 +21,9 @@ public class EditorController {
 		editorView.setNewObjectPanel(newObjectController.getView());
 		
 		editorView.setMenu(new MenuBuilder().createMenu(new NewMapListener(mapController)));
-		
-		editorView.display(true);
+	}
+	
+	public void display(boolean display) {
+		editorView.display(display);
 	}
 }
