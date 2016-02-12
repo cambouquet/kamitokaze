@@ -1,5 +1,15 @@
 package com.kamitokaze.editor.model.objects;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 public class SpriteElement {
 	private String spriteFileName;
 	
@@ -47,5 +57,22 @@ public class SpriteElement {
 	
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public Icon getImage() {
+		Image image;
+		BufferedImage bfImage = null;
+		try {
+			image = ImageIO.read(new File(spriteFileName));
+		bfImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		Graphics g = bfImage.createGraphics();
+		g.drawImage(image, 0, 0, null);
+		g.dispose();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return new ImageIcon(bfImage);
 	}
 }
