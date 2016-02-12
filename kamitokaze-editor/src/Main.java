@@ -1,4 +1,4 @@
-import com.kamitokaze.editor.ui.Editor;
+import com.kamitokaze.editor.controller.EditorController;
 
 /**
  * 
@@ -14,7 +14,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Editor editor = new Editor();
+		EditorController editor = new EditorController();
 		
 		editor.display(true);
 	}
