@@ -1,7 +1,9 @@
 package com.kamitokaze.editor.model.objects;
 
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.swing.Icon;
 
@@ -26,5 +28,11 @@ public class Ground extends MapObject {
 	public Icon getImage() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void createFromConfig(Path path, Properties properties, int objectNumber) {
+		// TODO Auto-generated method stub
+		
 	}
 }

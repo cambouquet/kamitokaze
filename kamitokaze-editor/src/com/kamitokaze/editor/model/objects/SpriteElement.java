@@ -5,13 +5,14 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class SpriteElement {
-	private String spriteFileName;
+	private Path spritePath;
 	
 	private int offsetx = 0;
 	private int offsety = 0;
@@ -19,12 +20,12 @@ public class SpriteElement {
 	private int width;
 	private int height;
 	
-	public String getSpriteFileName() {
-		return spriteFileName;
+	public Path getSpritePath() {
+		return spritePath;
 	}
 	
-	public void setSpriteFileName(String spriteFileName) {
-		this.spriteFileName = spriteFileName;
+	public void setSpritePath(Path spritePath) {
+		this.spritePath = spritePath;
 	}
 	
 	public int getOffsetx() {
@@ -63,7 +64,7 @@ public class SpriteElement {
 		Image image;
 		BufferedImage bfImage = null;
 		try {
-			image = ImageIO.read(new File(spriteFileName));
+			image = ImageIO.read(spritePath.toFile());
 		bfImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = bfImage.createGraphics();
 		g.drawImage(image, 0, 0, null);

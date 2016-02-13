@@ -4,10 +4,9 @@ import java.nio.file.Path;
 import java.util.Properties;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
-public class GroundElement extends MapObject {
-	private SpriteElement spriteElement;
+public class Door extends MapObject {
+	private SpriteElement spriteElement = new SpriteElement();
 	
 	public SpriteElement getSpriteElement() {
 		return spriteElement;
@@ -21,7 +20,7 @@ public class GroundElement extends MapObject {
 	public Icon getImage() {
 		return spriteElement.getImage();
 	}
-
+	
 	@Override
 	public void createFromConfig(Path path, Properties properties, int objectNumber) {
 		spriteElement = new SpriteElement();
@@ -32,9 +31,8 @@ public class GroundElement extends MapObject {
 		
 		spriteElement.setHeight(height);
 		spriteElement.setWidth(width);
-		spriteElement.setOffsetx(objectNumber*(width + hgap));
-		spriteElement.setOffsety(0);
+		spriteElement.setOffsetx(0);
+		spriteElement.setOffsety(objectNumber*(height + vgap));
 		spriteElement.setSpritePath(path);
 	}
-	
 }
