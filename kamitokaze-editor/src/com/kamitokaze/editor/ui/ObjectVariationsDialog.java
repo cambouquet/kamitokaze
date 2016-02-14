@@ -34,6 +34,7 @@ public class ObjectVariationsDialog extends JDialog implements UIStrings {
 		
 		this.getContentPane().setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		createMainPanel();
+		this.setModal(false);
 
 		this.pack();
 	}
@@ -65,16 +66,14 @@ public class ObjectVariationsDialog extends JDialog implements UIStrings {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
 
-		int i = 0;
 		for (MapObject object: objects) {
-			addObject(object, i);
-			i++;
+			addObject(object);
 		}
 		
 		return mainPanel;
 	}
 	
-	private void addObject(MapObject object, int i) {
+	private void addObject(MapObject object) {
 		JButton objectButton = new JButton(object.getImage());
 		objectButton.setPreferredSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));
 		objectButton.setMaximumSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));

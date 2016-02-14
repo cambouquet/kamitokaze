@@ -67,6 +67,7 @@ public class SpriteElement {
 			image = ImageIO.read(spritePath.toFile());
 		bfImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = bfImage.createGraphics();
+		g.translate(-offsetx, -offsety);
 		g.drawImage(image, 0, 0, null);
 		g.dispose();
 		} catch (IOException e) {

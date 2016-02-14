@@ -90,6 +90,9 @@ public class NewObjectPanel extends JPanel {
 	}
 
 	public void displayObjectVariations(List<MapObject> objects) {
+		if (objectVariationsPanel != null) {
+			objectVariationsPanel.dispose();
+		}
 		objectVariationsPanel = new ObjectVariationsDialog(null, objects);
 		objectVariationsPanel.showDialog();
 		revalidate();

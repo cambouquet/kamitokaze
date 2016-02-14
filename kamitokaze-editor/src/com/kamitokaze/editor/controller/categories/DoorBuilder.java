@@ -35,7 +35,7 @@ public class DoorBuilder extends ObjectBuilder {
 			return null;
 		}
 		
-		int numberOfElements = width / elementWidth;
+		int numberOfElements = height / elementHeight;
 		int i = 0;
 		while (i < numberOfElements) {
 			Door door = new Door();
