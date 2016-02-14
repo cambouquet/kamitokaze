@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.kamitokaze.editor.controller.categories.CategoriesFactory;
 import com.kamitokaze.editor.model.categories.Category;
+import com.kamitokaze.editor.model.categories.ObjectCategory;
 import com.kamitokaze.editor.ui.NewObjectPanel;
 
 public class NewObjectPanelController {
@@ -17,6 +18,7 @@ public class NewObjectPanelController {
 	private List<Category> categories = new ArrayList<>();
 	
 	private Category currentCategory = null;
+	private ObjectCategory currentObjectCategory = null;
 	
 	public NewObjectPanelController(EditorController parentController) {
 		this.parent = parentController;
@@ -41,6 +43,13 @@ public class NewObjectPanelController {
 		}
 	}
 	
+	public void displayObjectsFromObjectCategory(ObjectCategory newObjectCategory) {
+		if (currentObjectCategory == null || currentObjectCategory != newObjectCategory) {
+			currentObjectCategory = newObjectCategory;
+			view.displayObjectVariations(newObjectCategory.getObjects());
+		}
+	}
+	
 	public class CategoryButtonListener implements ActionListener {
 		private Category category;
 		
@@ -50,6 +59,19 @@ public class NewObjectPanelController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			displayCategory(category);
+		}
+
+	}
+	
+	public class ObjectCategoryButtonListener implements ActionListener {
+		private ObjectCategory objectCategory;
+		
+		public ObjectCategoryButtonListener(ObjectCategory objectCategory) {
+			this.objectCategory = objectCategory;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			displayObjectsFromObjectCategory(objectCategory);
 		}
 
 	}

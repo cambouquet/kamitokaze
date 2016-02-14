@@ -21,4 +21,8 @@ public class ObjectCategory {
 	public Icon getIcon() {
 		return objectVariations.get(0).getImage();
 	}
+
+	public List<MapObject> getObjects() {
+		return objectVariations;
+	}
 }

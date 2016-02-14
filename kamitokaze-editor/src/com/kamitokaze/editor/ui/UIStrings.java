@@ -19,4 +19,6 @@ public interface UIStrings {
 	public String MENU_FILE = "File";
 	public String MENU_NEW = "New";
 	public String MENU_QUIT = "Quit";
+
+	public String DIALOG_OBJECTS_TITLE = "Object vatiations";
 }

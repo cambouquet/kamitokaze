@@ -23,7 +23,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.kamitokaze.editor.model.MapProperties;
 import com.kamitokaze.editor.ui.UIStrings;
 
-public class NewMapDialog extends JDialog implements UIStrings {
+public class NewMapDialog extends JDialog {
 	private boolean validated = false;
 	
 	private MapProperties mapProperties = new MapProperties();
@@ -33,7 +33,7 @@ public class NewMapDialog extends JDialog implements UIStrings {
 	private JButton cancelButton;
 	
 	public NewMapDialog(JFrame parent) {
-		super(parent, DIALOG_NEWMAP_TITLE, true);
+		super(parent, UIStrings.DIALOG_NEWMAP_TITLE, true);
 		JPanel mainPanel = createMainPanel();
 		this.add(mainPanel, BorderLayout.CENTER);
 		
@@ -57,8 +57,8 @@ public class NewMapDialog extends JDialog implements UIStrings {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
 
-		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_MAXLEVEL, 0);
-		addNewPropertyToPanel(mainPanel, DIALOG_NEWMAP_PLAYERLEVEL, 1);
+		addNewPropertyToPanel(mainPanel, UIStrings.DIALOG_NEWMAP_MAXLEVEL, 0);
+		addNewPropertyToPanel(mainPanel, UIStrings.DIALOG_NEWMAP_PLAYERLEVEL, 1);
 		
 		return mainPanel;
 	}
@@ -76,7 +76,7 @@ public class NewMapDialog extends JDialog implements UIStrings {
 
 	private JPanel createButtonPanel() {
 		JPanel buttonPanel = new JPanel();
-		okButton = new JButton(DIALOG_NEWMAP_OKBUTTON);
+		okButton = new JButton(UIStrings.DIALOG_NEWMAP_OKBUTTON);
 		okButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0)
@@ -86,12 +86,12 @@ public class NewMapDialog extends JDialog implements UIStrings {
 					fillMapProperties();
 					setVisible(false);
 				} else {
-					JOptionPane.showMessageDialog(null, DIALOG_NEWMAP_INVALIDDATA_CONTENT, DIALOG_NEWMAP_INVALIDDATA_TITLE, JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, UIStrings.DIALOG_NEWMAP_INVALIDDATA_CONTENT, UIStrings.DIALOG_NEWMAP_INVALIDDATA_TITLE, JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		
-		cancelButton = new JButton(DIALOG_NEWMAP_CANCELBUTTON);
+		cancelButton = new JButton(UIStrings.DIALOG_NEWMAP_CANCELBUTTON);
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0)

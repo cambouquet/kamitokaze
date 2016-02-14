@@ -12,24 +12,27 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import com.kamitokaze.editor.controller.NewObjectPanelController;
 import com.kamitokaze.editor.model.categories.Category;
 import com.kamitokaze.editor.model.categories.ObjectCategory;
+import com.kamitokaze.editor.model.objects.MapObject;
 
 public class NewObjectPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static int DEFAULT_WIDTH = 1000;
 	private static int DEFAULT_HEIGHT = 300;
-	
+
 	private List<Category> categories = new ArrayList<>();
-	
+
 	private NewObjectPanelController controller;
-	
+
 	private JPanel objectPanel = new JPanel();
-	
+	private ObjectVariationsDialog objectVariationsPanel;
+
 	public NewObjectPanel(NewObjectPanelController newObjectPanelController) {
 		this.controller = newObjectPanelController;
 		this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
@@ -43,12 +46,12 @@ public class NewObjectPanel extends JPanel {
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
-		
+
 		JPanel categoryPanel = new JPanel();
 		categoryPanel.setLayout(new GridLayout(categories.size() / 2 + categories.size() % 2, 2));
 		Iterator<Category> ite = categories.iterator();
-		
-		while(ite.hasNext()) {
+
+		while (ite.hasNext()) {
 			Category category = ite.next();
 			JButton categoryButton = new JButton(category.getName());
 			categoryButton.addActionListener(controller.new CategoryButtonListener(category));
@@ -62,14 +65,15 @@ public class NewObjectPanel extends JPanel {
 	public void displayCategory(List<ObjectCategory> objectList) {
 		objectPanel.removeAll();
 		Iterator<ObjectCategory> ite = objectList.iterator();
-		
+
 		int objectNumber = 0;
-		
-		while(ite.hasNext()) {
+
+		while (ite.hasNext()) {
 			ObjectCategory object = ite.next();
 			JButton objectButton = new JButton(object.getIcon());
 			objectButton.setMaximumSize(new Dimension(40, 40));
 			objectButton.setPreferredSize(new Dimension(40, 40));
+			objectButton.addActionListener(controller.new ObjectCategoryButtonListener(object));
 			objectPanel.add(objectButton, getNextButtonPosition(objectNumber));
 			objectNumber++;
 		}
@@ -77,10 +81,18 @@ public class NewObjectPanel extends JPanel {
 		revalidate();
 		repaint();
 	}
-	
+
 	private static GridBagConstraints getNextButtonPosition(int buttonNumber) {
 		int columnNumber = buttonNumber / 3;
 		int rowNumber = buttonNumber % 3;
-		return new GridBagConstraints(columnNumber, rowNumber, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0);
+		return new GridBagConstraints(columnNumber, rowNumber, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START,
+				GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0);
+	}
+
+	public void displayObjectVariations(List<MapObject> objects) {
+		objectVariationsPanel = new ObjectVariationsDialog(null, objects);
+		objectVariationsPanel.showDialog();
+		revalidate();
+		repaint();
 	}
 }
