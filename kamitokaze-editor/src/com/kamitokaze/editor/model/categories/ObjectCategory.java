@@ -10,6 +10,10 @@ import com.kamitokaze.editor.model.objects.MapObject;
 public class ObjectCategory {
 	private List<MapObject> objectVariations = new ArrayList<>();
 	
+	public void setObjectVariations(List<MapObject> newObjectVariationList) {
+		objectVariations = newObjectVariationList;
+	}
+	
 	public void addObjectVariation(MapObject newObjectVariation) {
 		objectVariations.add(newObjectVariation);
 	}

@@ -27,7 +27,7 @@ public class CategoriesFactory {
 	
 	private static final String OBJECTS_PATH = "resources/objects";
 	
-	private static final String OBJECTS_PACKAGE_PATH = "com.kamitokaze.editor.model.objects";
+	private static final String OBJECTS_PACKAGE_PATH = "com.kamitokaze.editor.controller.categories";
 
 	public List<Category> initCategories() {
 		List<Category> categories = new ArrayList<>();
@@ -56,15 +56,15 @@ public class CategoriesFactory {
 			ObjectCategory objectCategory = new ObjectCategory();
 			Class<?> clazz;
 			try {
-				clazz = Class.forName(OBJECTS_PACKAGE_PATH + "." + className);
+				clazz = Class.forName(OBJECTS_PACKAGE_PATH + "." + className + "Builder");
 				Constructor<?> ctor = clazz.getConstructor();
-				MapObject object = (MapObject) ctor.newInstance();
-				object.createFromConfig(spritePath, properties, objectNumber);
+				ObjectBuilder objectBuilder = (ObjectBuilder) ctor.newInstance();
+				List<MapObject> mapObjectList = objectBuilder.createFromConfig(spritePath, properties);
 				
-				objectCategory.addObjectVariation(object);
+				objectCategory.setObjectVariations(mapObjectList);
 				category.add(objectCategory);
 				
-			} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | IOException e) {
 				System.err.println("Error when trying to create object for class " + className + ". Error: " + e.getMessage());
 			}
 			objectNumber++;
