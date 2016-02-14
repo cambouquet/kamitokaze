@@ -31,7 +31,6 @@ public class ObjectVariationsDialog extends JDialog implements UIStrings {
 		int numberOfObjects = objects.size();
 		int numberOfRows = computeNumberOfRows(numberOfObjects);
 		int numberOfColumns = computeNumberOfColumns(numberOfObjects);
-		this.setPreferredSize(new Dimension(numberOfColumns * BUTTON_SIZE, numberOfRows * BUTTON_SIZE));
 		
 		this.getContentPane().setLayout(new GridLayout(numberOfRows, numberOfColumns));
 		createMainPanel();
@@ -40,13 +39,13 @@ public class ObjectVariationsDialog extends JDialog implements UIStrings {
 	}
 	
 	private int computeNumberOfRows(int numberOfObjects) {
-		return (int) Math.ceil(numberOfObjects/4);
+		return (int) Math.ceil((double)numberOfObjects/4);
 	}
 
 	private int computeNumberOfColumns(int numberOfObjects) {
-		int width = NUMBER_COLUMNS_MAX * BUTTON_SIZE;
+		int width = NUMBER_COLUMNS_MAX;
 		if (numberOfObjects <= NUMBER_COLUMNS_MAX) {
-			width = numberOfObjects * BUTTON_SIZE;
+			width = numberOfObjects;
 		}
 		
 		return width;
@@ -77,6 +76,8 @@ public class ObjectVariationsDialog extends JDialog implements UIStrings {
 	
 	private void addObject(MapObject object, int i) {
 		JButton objectButton = new JButton(object.getImage());
+		objectButton.setPreferredSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));
+		objectButton.setMaximumSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));
 		
 		objectButton.addActionListener(new ActionListener() {
 			
